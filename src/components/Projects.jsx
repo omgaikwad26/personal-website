@@ -1,55 +1,152 @@
 import { PROJECTS } from "../constants";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { SiReact } from "react-icons/si";
+
+// Animation variant for cards
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 1) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.2,
+      duration: 0.6,
+    },
+  }),
+};
 
 const Projects = () => {
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const categories = ["All", "Mechanical Engineering", "Electrical Engineering", "AI"];
+  
+  const filteredProjects = selectedCategory === "All" 
+    ? PROJECTS 
+    : PROJECTS.filter(project => project.category === selectedCategory);
+
   return (
-    <div className="border-b border-neutral-900 pb-4">
+    <motion.div
+      id="projects"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={{
+        hidden: { opacity: 0, y: -50 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.6 },
+        },
+      }}
+      className="border-b border-neutral-900 pb-20"
+    >
       <motion.h2
+        className="text-center text-4xl my-20"
+        initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
-        className="my-20 text-center text-4xl"
       >
         Projects
       </motion.h2>
-      <div>
-        {PROJECTS.map((project, index) => (
-          <div key={index} className="mb-8 flex flex-wrap lg:justify-center">
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: -100 }}
-              transition={{ duration: 1 }}
-              className="w-full lg:w-1/4"
-            >
-              <img
-                src={project.image}
-                width={150}
-                height={150}
-                alt={project.title}
-                className="mb-6 rounded"
-              />
-            </motion.div>
-            <motion.div
-              whileInView={{ opacity: 1, x: 0 }}
-              initial={{ opacity: 0, x: 100 }}
-              transition={{ duration: 1 }}
-              className="w-full max-w-xl lg:w-3/4"
-            >
-              <h6 className="mb-2 font-semibold">{project.title}</h6>
-              <p className="mb-4 text-neutral-400">{project.description}</p>
-              {project.technologies.map((tech, index) => (
-                <span
-                  key={index}
-                  className="mr-2 rounded bg-neutral-900 px-2 py-1 text-sm font-medium text-purple-900"
-                >
-                  {tech}
-                </span>
-              ))}
-            </motion.div>
-          </div>
+
+      {/* Category Filter */}
+      <div className="flex justify-center gap-4 mb-8">
+        {categories.map((category) => (
+          <button
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+              selectedCategory === category
+                ? "bg-purple-600 text-white"
+                : "bg-neutral-800 text-neutral-400 hover:bg-neutral-700"
+            }`}
+          >
+            {category}
+          </button>
         ))}
       </div>
-    </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+        {filteredProjects.map((proj, idx) => (
+          <motion.div
+            key={idx}
+            custom={idx}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="relative rounded-lg overflow-hidden cursor-pointer shadow-lg group"
+          >
+            {proj.link ? (
+              <a
+                href={proj.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block"
+              >
+                {proj.title === "GitHub Repository" ? (
+                  <div className="w-full h-64 flex items-center justify-center bg-[#282c34]">
+                    <SiReact className="w-32 h-32 text-[#61DAFB] animate-spin-slow" />
+                  </div>
+                ) : (
+                  <img
+                    src={proj.image}
+                    alt={proj.title}
+                    className="object-cover w-full h-64 transform group-hover:scale-105 group-hover:opacity-50 transition duration-500 ease-in-out"
+                  />
+                )}
+                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
+                  <div className="mb-2">
+                    <h3 className="text-lg font-semibold">{proj.title}</h3>
+                    <p className="text-sm italic">{proj.description}</p>
+                    <p className="mt-1 text-xs text-purple-300">Click to visit GitHub</p>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap justify-center gap-2 mt-2">
+                    {proj.technologies?.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="bg-purple-900 text-white text-xs font-medium px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </a>
+            ) : (
+              <>
+                <img
+                  src={proj.image}
+                  alt={proj.title}
+                  className="object-cover w-full h-64 transform group-hover:scale-105 group-hover:opacity-50 transition duration-500 ease-in-out"
+                />
+                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
+                  <div className="mb-2">
+                    <h3 className="text-lg font-semibold">{proj.title}</h3>
+                    <p className="text-sm italic">{proj.description}</p>
+                    <p className="mt-1 text-xs text-purple-300">Click for more</p>
+                  </div>
+
+                  {/* Skills */}
+                  <div className="flex flex-wrap justify-center gap-2 mt-2">
+                    {proj.technologies?.map((tech, i) => (
+                      <span
+                        key={i}
+                        className="bg-purple-900 text-white text-xs font-medium px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </>
+            )}
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
   );
 };
 
