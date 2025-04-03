@@ -8,7 +8,7 @@ const Skills = () => {
         whileInView={{ opacity: 1, y: 0 }}
         initial={{ opacity: 0, y: -100 }}
         transition={{ duration: 0.5 }}
-        className="my-12 text-center text-4xl"
+        className="my-12 text-center text-5xl"
       >
         Skills
       </motion.h2>
@@ -22,12 +22,14 @@ const Skills = () => {
         {SKILLS.map((category, index) => (
           <div key={index} className="rounded-lg p-4">
             <h3 className="text-lg font-semibold mb-2 text-purple-400">{category.title}</h3>
+            <p className="mb-3 text-center-400 text-base">Concepts:</p>
             <p className="mb-3 text-neutral-400 text-base">{category.description}</p>
+            <p className="mb-3 text-center-400 text-base">Tools:</p>
             <div className="flex flex-wrap gap-1.5">
               {category.skills.map((skill, i) => (
                 <span
                   key={i}
-                  className="rounded-full bg-neutral-900 px-3 py-1 text-base font-medium text-purple-900 hover:bg-purple-900 hover:text-white transition"
+                  className="rounded-full bg-neutral-800 px-3 py-1 text-base font-medium text-purple-500 hover:bg-purple-900 hover:text-white transition"
                 >
                   {skill}
                 </span>

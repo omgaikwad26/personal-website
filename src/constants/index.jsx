@@ -1,7 +1,3 @@
-import project1 from "../assets/projects/project-1.jpg";
-import project2 from "../assets/projects/project-2.jpg";
-import project3 from "../assets/projects/project-3.jpg";
-import project4 from "../assets/projects/project-4.jpg";
 import sesma1 from "../assets/projects/sesma-1.jpeg";
 import robotics1 from "../assets/projects/robotics-1.png";
 import matlabcar1 from "../assets/projects/matlabcar-1.png";
@@ -11,7 +7,7 @@ import proof1 from "../assets/projects/proof1.jpg";
 export const HERO_CONTENT = (
   <>
     <p>
-      I like turning bolts and code into robots that know what they're doing — or at least pretend convincingly. My work blends in Robotics, AI, mechatronics, and a touch of curiosity to build intelligent, real-world systems.
+      I like turning bolts and code into robots that know what they're doing — or at least pretend. My work blends in Robotics, AI, mechatronics, and a touch of curiosity to build intelligent, real-world systems.
     </p>
     <br />
     <p className="font-bold">Stevens Institute of Technology</p>
@@ -25,17 +21,20 @@ export const ABOUT_TEXT = `I am a dedicated and versatile full stack developer w
 export const SKILLS = [
   {
     title: "Mechanical Engineering",
-    description: "CAD design, FEA, product design, and prototyping for robotics and mechanical systems.",
+    description: "CAD design, Finite Element Analysis, Sheet Metal Manufacturing, and prototyping for robotics and mechanical systems.",
+    tools: "Tools:",
     skills: ["SolidWorks", "AutoCAD", "ANSYS", "Creo", "3D Printing", "GD&T", "DFMA", "Lean Six Sigma"]
   },
   {
     title: "Electrical & Embedded Systems",
-    description: "Embedded programming, PCB design, motor control, and real-time sensing in robotics.",
-    skills: ["Embedded Systems", "PCB Design", "PWM Control", "CompactLogix PLC", "IMU Sensors", "Force Sensors"]
+    description: "Embedded programming, PCB design, and sensor control and fusion.",
+    tools: "Tools:",
+    skills: [ "PWM Control", "CompactLogix PLC", "IMU Sensors", "Force Sensors"]
   },
   {
     title: "Programming & AI",
-    description: "Machine learning, algorithm development, and control systems with modern languages and frameworks.",
+    description: "Control systems, Machine learning, algorithm development, testing, and optimization with modern languages and frameworks.",
+    tools: "Tools:",
     skills: ["Python", "C", "C++", "MATLAB", "Javascript", "ROS", "TensorFlow", "OpenCV", "Machine Learning"]
   }
 ];
@@ -46,28 +45,28 @@ export const EXPERIENCES = [
     year: "May 2024 – Dec 2024",
     role: "Robotics Engineer Intern",
     company: "Prototype Object Fabrication Lab (ProOF) – SIT",
-    description: `Built a MATLAB and ROS 2 integrated virtual environment for the Doosan H2515 collaborative robot, and programmed a path planning algorithm for automated fiber placement.`,
+    //description: `Built a MATLAB and ROS 2 integrated virtual environment for the Doosan H2515 collaborative robot, and programmed a path planning algorithm for automated fiber placement.`,
     technologies: ["ROS 2", "MATLAB", "Python", "SolidWorks", "Pneumatics"],
   },
   {
     year: "Jan 2025 – Present",
-    role: "Hardware Engineer Intern",
+    role: "Mechanical Hardware Engineer Intern",
     company: "Charter Machine Company",
-    description: `Created submittals, SOPs, and instruction manuals for Belt and Tower Press machines. Assisted in mechanical and electrical drawings to meet GD&T and IEC 62061 standards.`,
+    //description: `Created submittals, SOPs, and instruction manuals for Belt and Tower Press machines. Assisted in mechanical and electrical drawings to meet GD&T and IEC 62061 standards.`,
     technologies: ["AutoCAD", "GD&T", "IEC 62061", "SOP Writing", "Technical Documentation"],
   },
   {
     year: "Jan 2023 – Jul 2023",
     role: "Mechanical Engineer Intern",
     company: "Charter Machine Company",
-    description: `Designed mechanical components in Inventor, performed FEA, and optimized hydraulic manifold routing for better flow control. Co-authored operation manuals.`,
+    //description: `Designed mechanical components in Inventor, performed FEA, and optimized hydraulic manifold routing for better flow control. Co-authored operation manuals.`,
     technologies: ["Inventor", "FEA", "Hydraulics", "DFMA", "ASME Y14.5"],
   },
   {
     year: "Jun 2022 – Aug 2022",
     role: "ML Research Intern",
     company: "Spartificial",
-    description: `Analyzed lunar topography data to classify safe landing zones using TensorFlow and OpenCV. Built an R-CNN model achieving 97.6% crater classification accuracy.`,
+    //description: `Analyzed lunar topography data to classify safe landing zones using TensorFlow and OpenCV. Built an R-CNN model achieving 97.6% crater classification accuracy.`,
     technologies: ["Python", "TensorFlow", "OpenCV", "R-CNN", "Image Processing"],
   },
 ];
@@ -110,14 +109,9 @@ export const PROJECTS = [
     title: "Signal Processing using ML - Random Forest",
     image: ml1,
     description:
-      "Designed a compaction roller end-effector with pneumatic control for AFP, and implemented a path planning algorithm in Python integrated with ROS 2.",
-    technologies: ["ROS 2", "Python", "SolidWorks", "Pneumatics", "Path Planning"],
+      "Radar Target Classifier using denoised spectrograms and Random Forest, extracting velocity and feature importance from range-Doppler radar data. end-effector with pneumatic control for AFP, and implemented a path planning algorithm in Python integrated with ROS 2.",
+    technologies: ["Signal Processing", "Python", "Random Forest"],
     category: "AI"
   },
 ];
 
-export const CONTACT = {
-  address: "767 Fifth Avenue, New York, NY 10153 ",
-  phoneNo: "+12 4555 666 00 ",
-  email: "omgaikwad222@gmail.com",
-};

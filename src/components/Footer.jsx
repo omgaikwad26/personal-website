@@ -10,7 +10,7 @@ const Footer = () => {
           transition={{ duration: 0.5 }}
           className="text-center text-neutral-500 text-sm"
         >
-          © {new Date().getFullYear()} Om Gaikwad. All rights reserved.
+          © {new Date().getFullYear()} Om Gaikwad
         </motion.p>
       </div>
     </footer>

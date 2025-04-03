@@ -95,7 +95,7 @@ const Projects = () => {
                     className="object-cover w-full h-64 transform group-hover:scale-105 group-hover:opacity-50 transition duration-500 ease-in-out"
                   />
                 )}
-                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
+                <div className="absolute inset-0 bg-black bg-opacity-80 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
                   <div className="mb-2">
                     <h3 className="text-lg font-semibold">{proj.title}</h3>
                     <p className="text-sm italic">{proj.description}</p>
@@ -122,11 +122,10 @@ const Projects = () => {
                   alt={proj.title}
                   className="object-cover w-full h-64 transform group-hover:scale-105 group-hover:opacity-50 transition duration-500 ease-in-out"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
+                <div className="absolute inset-0 bg-black bg-opacity-80 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
                   <div className="mb-2">
                     <h3 className="text-lg font-semibold">{proj.title}</h3>
                     <p className="text-sm italic">{proj.description}</p>
-                    <p className="mt-1 text-xs text-purple-300">Click for more</p>
                   </div>
 
                   {/* Skills */}

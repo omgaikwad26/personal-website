@@ -20,13 +20,15 @@ const fadeUp = {
 
 const WorkExperience = () => {
   const [openModal, setOpenModal] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const experiences = [
     {
-      title: "ProOF Lab – Robotics Engineer Intern",
-      date: "May 2024 – Present",
+      title: "Robotics Engineer Intern",
+      company: "Prototyping and Fabrication Lab at SIT",
+      date: "May 2024 – December 2024",
       image: proofImg,
-      skills: ["Python", "OpenCV", "MATLAB", "ROS 2", "Doosan H2515"],
+      skills: ["Python", "ROS 2","OpenCV", "MATLAB", "Doosan H2515"],
       details: [
         "Developed a path planning algorithm and isoparametric mapping for the DOOSAN H2515 robot workspace.",
         "Programmed the path planning algorithm in Python for automatic fiber placement on a 2D surface.",
@@ -40,29 +42,26 @@ const WorkExperience = () => {
       ],
     },
     {
-      title: "Charter Machine Co – Hardware Engineer Intern",
-      date: "Jan 2023 – Present",
+      title: "Mechanical Hardware Engineer Intern",
+      company: "Charter Machine Company",
+      date: "Jan 2023 – July 2023",
       image: charterImg,
       skills: ["AutoCAD", "GD&T", "IEC 62061", "FEA", "SolidWorks", "Creo"],
       details: [
-        "Created submittals and SOPs for Belt & Tower Press machines.",
-        "Created CAD drawings and ensured GD&T and IEC 62061 compliance.",
-        "Redesigned hydraulic manifolds for better flow.",
+        "Designed brackets, support frames, pneumatic components in Autodesk Inventor, performed FEA, and produced 100+ fabrication drawings to meet ASME Y14.5 GD&T Standards",
+        "Reconstructed hydraulic manifold routing for better flow control; designed the model in Inventor with at most precision ready for manufacturing",
+        "Lead Author of Operation Manuals and Submittals with appropriate DFMA principles",
       ],
     },
     {
-      title: "Spartificial – Robotics Engineer Intern",
+      title: "Machine Learning Engineer Intern",
+      company: "Spartificial",
       date: "Jun 2023 – Aug 2023",
       image: spartificialImg,
-      skills: ["Python", "ROS", "Computer Vision", "Robotics"],
+      skills: ["Python", "Machine Learning", "TensorFlow"],
       details: [
-        "Developed and implemented computer vision algorithms for robot perception.",
-        "Worked on ROS-based navigation and path planning systems.",
-        "Contributed to the development of autonomous robot behaviors.",
-      ],
-      results: [
-        "Successfully implemented computer vision algorithms that improved robot perception accuracy.",
-        "Enhanced the robot's navigation capabilities through improved path planning.",
+        "Conducted a detailed analysis of lunar topography datasets to classify safe landing sites for spacecraft using image processing techniques with TensorFlow and OpenCV",
+        "Independently built R-CNN} based algorithm and analyzed 20+ lunar crater image datasets with 97.6% accuracy",
       ],
     },
   ];
@@ -84,52 +83,96 @@ const WorkExperience = () => {
       className="border-b border-neutral-900 pb-20"
     >
       <motion.h2
-        className="text-center text-4xl my-20"
+        className="text-center text-5xl my-20"
         initial={{ opacity: 0, y: -40 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         Work Experience
+        <p className="text-neutral-400 text-sm mt-2 italic">Hover over the images for more details</p>
       </motion.h2>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 px-6">
+      <div className="flex flex-col items-start max-w-5xl mx-auto pl-4">
         {experiences.map((exp, idx) => (
           <motion.div
-          key={idx}
-          custom={idx}
-          variants={fadeUp}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="relative rounded-lg overflow-hidden cursor-pointer shadow-lg group"
-          onClick={() => setOpenModal(idx)}
-        >
-          <img
-            src={exp.image}
-            alt={exp.title}
-            className="object-cover w-full h-64 transform group-hover:scale-105 transition duration-500 ease-in-out"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-80 opacity-0 group-hover:opacity-100 transition duration-300 flex flex-col justify-center items-center text-white text-center px-4">
-            <div className="mb-2">
-              <h3 className="text-lg font-semibold">{exp.title}</h3>
-              <p className="text-sm">{exp.date}</p>
-              <p className="mt-1 text-xs text-purple-300">Click for more</p>
+            key={idx}
+            custom={idx}
+            variants={fadeUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="w-full mb-8 relative group"
+            onMouseEnter={() => setHoveredIndex(idx)}
+            onMouseLeave={() => setHoveredIndex(null)}
+          >
+            <div className="flex items-start gap-8 -ml-4">
+              {/* Left: Image */}
+              <div className="w-60 h-60 flex-shrink-0">
+                <img
+                  src={exp.image}
+                  alt={exp.title}
+                  className="w-full h-full object-contain rounded-lg hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              {/* Middle: Basic Info */}
+              <div className="flex-grow text-left">
+                <h3 className="text-xl font-semibold text-left">{exp.title}</h3>
+                <p className="text-neutral-400 text-left">{exp.company}</p>
+                <p className="text-neutral-400 text-left">{exp.date}</p>
+                <div className="flex flex-wrap gap-2 mt-2 justify-start">
+                  {exp.skills?.map((skill, i) => (
+                    <span
+                      key={i}
+                      className="bg-purple-900 text-white text-xs font-medium px-3 py-1 rounded-full"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Right: Hover Details */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{
+                  opacity: hoveredIndex === idx ? 1 : 0,
+                  x: hoveredIndex === idx ? 0 : 20,
+                }}
+                transition={{ duration: 0.3 }}
+                className="absolute left-3/4 top-0 w-[32rem] bg-neutral-900/80 backdrop-blur-lg rounded-lg p-6 shadow-lg z-10 border border-neutral-800"
+              >
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold mb-2 text-purple-400">What I did?</h4>
+                    <ul className="list-disc list-inside space-y-2 text-sm text-neutral-300">
+                      {exp.details.map((item, i) => (
+                        <li key={i} className="leading-relaxed">{item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  {exp.results && (
+                    <div>
+                      <h4 className="font-semibold mb-2 text-purple-400">Results:</h4>
+                      <ul className="list-disc list-inside space-y-2 text-sm text-neutral-300">
+                        {exp.results.map((res, i) => (
+                          <li key={i} className="leading-relaxed">{res}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  <div className="pt-4">
+                    <button 
+                      onClick={() => setOpenModal(idx)}
+                      className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
+                    >
+                      Click for full details →
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
             </div>
-        
-            {/* Skills as tags */}
-            <div className="flex flex-wrap justify-center gap-2 mt-2">
-              {exp.skills?.map((skill, i) => (
-                <span
-                  key={i}
-                  className="bg-purple-900 text-white text-xs font-medium px-3 py-1 rounded-full"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-        
+          </motion.div>
         ))}
       </div>
 
