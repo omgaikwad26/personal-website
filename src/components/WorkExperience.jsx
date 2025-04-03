@@ -166,7 +166,7 @@ const WorkExperience = () => {
                       onClick={() => setOpenModal(idx)}
                       className="text-sm text-purple-400 hover:text-purple-300 transition-colors"
                     >
-                      Click for full details →
+                      {/* Click for full details → */}
                     </button>
                   </div>
                 </div>

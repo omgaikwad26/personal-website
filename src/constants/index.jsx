@@ -111,7 +111,11 @@ export const PROJECTS = [
     description:
       "Radar Target Classifier using denoised spectrograms and Random Forest, extracting velocity and feature importance from range-Doppler radar data. end-effector with pneumatic control for AFP, and implemented a path planning algorithm in Python integrated with ROS 2.",
     technologies: ["Signal Processing", "Python", "Random Forest"],
-    category: "AI"
+    category: "Electrical Engineering"
   },
 ];
+
+export const CONTACT = {
+  email: "omgaikwad222@gmail.com"
+};
 
