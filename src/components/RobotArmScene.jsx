@@ -21,7 +21,7 @@ const RobotModel = () => {
     setError(null);
 
     console.log('Starting to load model...');
-    const modelPath = "/models/collada/abb_irb52_7_120.dae";
+    const modelPath = "models/collada/abb_irb52_7_120.dae";
     console.log('Model path:', modelPath);
 
     // Add error event listener to the loader

@@ -1,4 +1,4 @@
-import logo from "../assets/OmGLogo.png";
+import logo from "/OmGLogo.png"; 
 import { FaLinkedin, FaGithub } from 'react-icons/fa6';
 
 const Navbar = () => {
